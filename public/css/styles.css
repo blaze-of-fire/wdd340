@@ -5,28 +5,42 @@
     box-sizing: border-box;
 }
 
-#wrapper {
-  position: relative;
-    background-color: white;
-      max-width: 1000px;
-}
-
 body {
   position: relative;
   margin: 0 auto;
 }
 
+#mediaWrapper {
+  padding: 1rem 0 0 0;
+  position: relative;
+  width: 100%;             
+  max-width: 1000px;        
+  margin: 0 auto;           
+}
+
+#wrapper {
+    background-color: white;
+    max-width: 1000px;           
+    width: 100%;
+    z-index: 1;
+}
+
 .body-bg {
-  object-fit: cover;
-  z-index: -1;
-  display: block;
+  display: none;
+  position: absolute;
   width: 100%;
-  max-width: 1200px;
+  height: 100%;
   margin: 0 auto;
+  z-index: -1;
 }
 
 header, main, footer {
   padding-left: 0.3rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
 }
 
 .siteName a {
@@ -43,8 +57,7 @@ header, main, footer {
     font-weight: 400;
     text-decoration: none;
     color: black;
-    position: absolute;
-    top: 0rem; right: 0.5rem;
+    margin-top: 1rem;
   }
 
 nav ul li {
@@ -71,6 +84,7 @@ h2 {
     display: flex;
     justify-content: center;
     position: absolute;
+    justify-self: center;
 }
 
 .heroImg {
@@ -90,7 +104,7 @@ p, a, li {
     top: 0rem;
     left: 0.5rem;
     width: 42%;
-    color: rgb(2, 171, 238);
+    color: rgb(3, 115, 160);
     background-color: rgb(255, 255, 255, 0.65);
 }
 
@@ -108,8 +122,13 @@ p, a, li {
     margin: 0;
 }
 
+.gridContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
 .reviews {
-    margin-top: 65%;
+    margin: 65% auto 0 auto;
 }
 
 .reviews ul {
@@ -122,11 +141,11 @@ p, a, li {
 }
 
 .upgrades {
-    margin-top: 2.5rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 0.75rem;
     width: 314px;
+    margin: 65% auto 0 auto;
 }
 
 .upgrades h2 {
@@ -161,14 +180,19 @@ p, a, li {
     width: fit-content;
     margin: 0 auto;
   }
+
   .reviews {
-    margin-top: 20rem;
+    margin-top: 17rem;
+  }
+
+  .upgrades {
+    margin-top: 17rem;
   }
 }
 
 @media screen and (min-width: 630px) {
 
-  #wrapper .body-bg {
+  #mediaWrapper .body-bg {
     display: block;
   }
 
@@ -180,11 +204,50 @@ p, a, li {
         width: 80%;
         margin: 1rem auto;
         padding: 0.5rem;
+
     }
 
+    h2 {
+        font-size: x-large;
+    }
+
+    .heroText p {
+        margin: 1rem 0;
+    }  
+
+}
+
+@media screen and (max-width: 740px) {
+    .hero {
+        margin: 2rem 0 0 1rem;
+    }
+}
+
+@media screen and (min-width: 740px) {
     .hero {
         margin: 2rem 0 0 4rem;
+    }
+}
 
+@media screen and (min-width: 925px) {
+    .hero {
+      padding-left: 10%;
+    }
+}
+
+@media screen and (max-width: 550px) {
+
+    .gridContainer {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr;
     }
 
+    .upgrades {
+      margin: 1rem 0 0 0;
+      grid-gap: .5rem;
+    }
+
+    .reviews {
+      margin: 65% 0 0 0;
+    }
 }

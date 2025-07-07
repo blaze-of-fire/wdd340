@@ -3,16 +3,18 @@
 <%- include('../partials/head') %>
 
 <body>
-    <img class="body-bg" src="/images/site/small_check.jpg" alt="background">
-    <div id="wrapper">
-        <%- include('../partials/header') %>
-        <%- include('../partials/navigation') %>
-
-        <main>
-            <%- body %>
-        </main>
-
-        <%- include('../partials/footer') %>
+    <div id="mediaWrapper">
+        <img class="body-bg" src="/images/site/small_check.jpg" alt="background">
+        <div id="wrapper">
+            <%- include('../partials/header') %>
+            <%- include('../partials/navigation') %>
+    
+            <main>
+                <%- body %>
+            </main>
+    
+            <%- include('../partials/footer') %>
+        </div>
     </div>
 </body>
 </html>
