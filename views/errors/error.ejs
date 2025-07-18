@@ -1,0 +1,22 @@
+<!-- If there is a title already, use it. 
+   Otherwise, redirect to the same page. -->
+<% if (title) { %>
+<h1><%= title%></h1>
+<% } else {
+    res.redirect('/')
+} %>
+
+<div class="errorMessageOnImage">
+    <%- message %>
+</div>
+
+<div class="funnyErrorHero">
+    <picture>
+        <source srcset="/images/site/lightning_tow-mater.jpg" media="(min-width: 705px)">
+        <img src="/images/site/mater-mcqueen_mobile-view.jpg" alt="Lightning McQueen and Tow Mater Photo">
+    </picture>
+    <p class="lightningWords">"Another crash? Great. So, who’s the lucky wreck we’re towing this time?"</p>
+    <p class="materWords">"Whatcha mean, buddy? This here’s easy-peasy! You been crashin’ ever since I laid eyes on ya!"</p>
+    <figcaption class="desktopFig">image attribution to  wallpapers.com</figcaption>
+    <figcaption class="mobileFig">image attribution to pinterest.com</figcaption>
+</div>
