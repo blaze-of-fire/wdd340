@@ -38,7 +38,7 @@ Util.buildClassificationGrid = async function(data){
             + '" title="View ' + vehicle.inv_make + ' ' + vehicle.inv_model
             + ' details"><img src="' + vehicle.inv_thumbnail
             + '" alt="Image of ' + vehicle.inv_make + ' ' + vehicle.inv_model 
-            + ' on CSE Motors" /></a>'
+            + ' on CSE Motors"></a>'
             grid += '<div class="namePrice">'
             grid += '<hr />'
             grid += '<h2>'
@@ -53,9 +53,37 @@ Util.buildClassificationGrid = async function(data){
         })
         grid += '</ul>'
     } else {
-        grid += '<p class="notice">Sorry, no matching vehicles could be found.'
+        grid += '<p class="notice">Sorry, no matching vehicles could be found.' + '</p>'
     }
     return grid
+}
+
+/* **************************************
+ * Build the vehicle view HTML
+ * *********************************** */
+Util.buildItemDetailView = async function(data){
+    let view = ""
+    let vehicle = data[0]
+    if (data.length > 0){
+        view = '<div class="vehicleDisplay">'
+        view += '<img src="' + vehicle.inv_image
+        + '" alt="Image of ' + vehicle.inv_make + ' ' + vehicle.inv_model
+        + ' on CSE Motors" >'
+        view += '<span class="price">Price: $'
+        + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>'
+        view += '<div class="vehicleInfo">'
+        view += '<h2>' + vehicle.inv_make + ' ' 
+        + vehicle.inv_model + ' Details' + '</h2>'
+        view += '<p>' + '<span>Description: </span>' + vehicle.inv_description + '</p>'
+        view += '<p>' + '<span>Color: </span>' + vehicle.inv_color + '</p>'
+        view += '<p>' + '<span>Miles: </span>' 
+        + new Intl.NumberFormat('en-US').format(vehicle.inv_miles) + '</p>'
+        view += '</div>'
+        view += '</div>'
+    } else {
+        view += '<p class="notice">Sorry, this vehicle could not be found.' + '</p>'
+    }
+    return view
 }
 
 /* *****************************************
@@ -64,4 +92,5 @@ Util.buildClassificationGrid = async function(data){
  * General Error Handling
  ***************************************** */
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
+
 module.exports = Util

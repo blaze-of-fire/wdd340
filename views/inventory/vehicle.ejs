@@ -1,0 +1,10 @@
+<!-- If there is a title already, use it. 
+   Otherwise, redirect to the same page. -->
+<%if (title) {%>
+<h1><%= title%></h1>
+<%} else {
+    res.redirect('/')
+}%>
+
+<!-- A vehicle's details display-->
+<%- view %>

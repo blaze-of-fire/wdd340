@@ -11,6 +11,7 @@ const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
 const inventoryRoute = require("./routes/inventoryRoute")
+const errorRoute = require("./routes/errorRoute")
 const baseController = require("./controllers/baseController")
 const utilities = require("./utilities/index")
 
@@ -24,13 +25,16 @@ app.set("layout", "layouts/layout")
 /* ***********************
  * Routes
  *************************/
-app.use(static)
+app.use(utilities.handleErrors(static))
 
 // Index Route
 app.get("/", utilities.handleErrors(baseController.buildHome))
 
 // Inventory Routes
-app.use("/inv", inventoryRoute)
+app.use("/inv", utilities.handleErrors(inventoryRoute))
+
+// Route Leading to 500 Error
+app.use("/error", utilities.handleErrors(errorRoute))
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
@@ -43,6 +47,7 @@ app.use(async (req, res, next) => {
  ************************/
 app.use(async (err, req, res, next) => {
     let nav = await utilities.getNav()
+    let message
     console.error(`Error at: "${req.originalUrl}": ${err.message}`)
     if(err.status == 404){message = err.message} else {message = "Oh no! You crashed. Try the nav bar to get back on track."}
     res.render("errors/error", {
