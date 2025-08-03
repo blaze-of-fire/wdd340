@@ -6,14 +6,22 @@
 
 <%- messages() %>
 
-<form id="loginForm" method="get">
+<% if (errors) { %>
+    <ul class="notice">
+    <% errors.array().forEach(error => { %>
+        <li> <%= error.msg %></li>
+    <% }) %>
+    </ul>
+<% } %>
+
+<form action="/account/login" method="post">
     <div>
         <div>
             <div>
-                <label for="account_email">Email:</label><br>
-                <input type="email" id="account_email" name="account_email" required><br>
-                <label for="account_password">Password:</label><br>
-                <input type="password" id="account_password" name="account_password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" title="Please enter at least 12 characters with 1 lowercase letter, 1 capital letter, 1 number, and 1 special character." required><br><br>
+                <label for="account_email">Email:</label>
+                <input type="email" id="account_email" name="account_email" required>
+                <label for="account_password">Password:</label>
+                <input type="password" id="account_password" name="account_password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" title="Please enter at least 12 characters with 1 lowercase letter, 1 capital letter, 1 number, and 1 special character." required>
                 <input type="submit" value="Login">
                 <p class="loginReq">All fields are required and the password must have: 
                 <p class="loginReq">12 characters in length, minimum</p>

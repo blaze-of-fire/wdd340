@@ -1,0 +1,28 @@
+<% if (title) { %>
+<h1><%= title %></h1>
+<% }  %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+    <ul class="notice">
+    <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+  <%  }) %><% if (flashMessages.error) { %>
+  <div class="error"><%= flashMessages.error %></div>
+<% } %>
+    </ul>
+<% } %>
+
+<form action="/inv/add-classification" method="post">
+    <div>
+        <div>
+            <div>
+                <label for="classification_name">New classification:</label>
+                <input type="text" id="invClassification" name="classification_name" pattern="^[a-zA-Z]{3,}$" required>
+                <p>Only letters are allowed.</p>
+                <input type="submit" value="Add Classification">
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,45 @@
+<% if (title) {%>
+<h1><%= title %></h1>
+<% } %>
+
+<%- messages() %> <!-- express-messages -->
+
+<% if (errors) { %>
+    <ul class="notice">
+    <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+  <%  }) %><% if (flashMessages.error) { %>
+  <div class="error"><%= flashMessages.error %></div>
+<% } %>
+    </ul>
+<% } %>
+
+<form action="/inv/add-inventory" method="post">
+    <div>
+        <div>
+            <div>
+                <label for="classificationList">Classification:</label>
+                <%- classificationList %>
+                <label for="invMake">Make:</label>
+                <input type="text" id="invMake" name="inv_make" required title="Car make can contain letters, numbers, spaces, and hyphens" required value="<%= locals.inv_make %>">
+                <label for="invModel">Model:</label>
+                <input type="text" id="invModel" name="inv_model" required title="Car model can contain letters, numbers, spaces, and hyphens" value="<%= locals.inv_model %>">
+                <label for="invYear">Year:</label>
+                <input type="number" id="invYear" name="inv_year" required value="<%= locals.inv_year %>">
+                <label for="invDescription">Description:</label>
+                <textarea id="invDescription" name="inv_description" rows="3" required><%= locals.inv_description %></textarea>
+                <label for="invImage">Image:</label>
+                <input type="text" id="invImage" name="inv_image" required value="<%- locals.inv_image %>">
+                <label for="invThumbnail">Thumbnail:</label>
+                <input type="text" id="invThumbnail" name="inv_thumbnail" required value="<%- locals.inv_thumbnail %>">
+                <label for="invPrice">Price:</label>
+                <input type="number" id="invPrice" name="inv_price" required value="<%= locals.inv_price %>">
+                <label for="invMiles">Miles:</label>
+                <input type="number" id="invMiles" name="inv_miles" required pattern="^[^.e]*$" value="<%= locals.inv_miles %>">
+                <label for="invColor">Color:</label>
+                <input type="text" id="invColor" name="inv_color" required value="<%= locals.inv_color %>">
+                <input type="submit" value="Add to Inventory">
+            </div>
+        </div>
+    </div>
+</form>
