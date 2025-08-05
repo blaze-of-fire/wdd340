@@ -229,6 +229,15 @@ p, a, li {
     display: block;
 }
 
+.decorLine {
+    width: 96.5%;
+    display: flex;
+    align-self: baseline;
+    background-color: rgb(216, 1, 1);
+    height: 3px;
+    margin: 1.5rem auto 0.5rem auto;
+}
+
 @media screen and (min-width: 515px) {
 
     .hero {
@@ -680,13 +689,37 @@ form a {
     margin-top: 1.5rem;
 }
 
-.decorLine {
-    width: 96.5%;
-    display: flex;
-    align-self: baseline;
-    background-color: rgb(216, 1, 1);
-    height: 3px;
-    margin: 1.5rem auto 0.5rem auto;
+#inventoryDisplay {
+    border-radius: 5px;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+thead tr {
+    background-color: rgb(211, 211, 211);
+    height: 3rem;
+}
+
+tr {
+    background-color: rgb(255, 247, 132);
+    height: 2rem;
+}
+
+.leftTableData {
+    display: block;
+    margin: 0.5rem 0.5rem;
+}
+
+tbody tr:nth-child(even) {
+    background-color: rgb(255, 147, 147);
+}
+
+tr a {
+    display: block;
+    color: rgb(8, 8, 8);
+    /* color: rgb(70, 50, 50); */
+    text-align: center;
+    margin: 0;
 }
 
 /* Add inventory form styles */
@@ -697,4 +730,8 @@ form a {
     width: 100%;
     border-radius: 5px;
     border: 1px solid black;
+}
+
+.selectTableManagement #classificationList {
+    width: fit-content;
 }

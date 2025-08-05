@@ -12,7 +12,7 @@ router.get("/type/:classificationId", utilities.handleErrors(invController.build
 router.get("/detail/:invId", utilities.handleErrors(invController.buildByInventoryId));
 
 // Route to build management view
-router.get("/", utilities.handleErrors(invController.buildManagementView))
+router.get("/", utilities.handleErrors(invController.buildManagement))
 
 // Route to display the add classification form
 router.get("/add-classification", utilities.handleErrors(invController.buildAddClassification))
@@ -32,5 +32,17 @@ router.post("/add-inventory",
     inventoryValidate.newInvRules(),
     inventoryValidate.checkInvData,
     utilities.handleErrors(invController.addInventory))
+
+// For the select on the vehicle management page that updates the table everytime a new classification is selected
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+
+// Route to the edit page from the vehicle management page
+router.get("/edit/:invId", utilities.handleErrors(invController.buildEditItemInfo));
+
+// Route to handle the form submission for edit vehicle page
+router.post("/update/",
+    inventoryValidate.newInvRules(),
+    inventoryValidate.checkUpdateData,
+    utilities.handleErrors(invController.updateInventory))
 
 module.exports = router;

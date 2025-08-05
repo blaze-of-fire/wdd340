@@ -1,6 +1,7 @@
 const utilities = require(".");
     const { body, validationResult} = require("express-validator")
     const validate = {}
+    const invModel = require("../models/inventory-model")
 
 /*  **********************************
   *  New Inventory Data Validation Rules
@@ -83,7 +84,7 @@ validate.newInvRules = () => {
 
 
 /* ******************************
- * Check inv vehicle data and return errors or continue to management page
+ * Check inv vehicle data and return errors to add inv view or continue to management page
  * ***************************** */
 validate.checkInvData = async (req, res, next) => {
     const { classification_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles,  inv_color } = req.body
@@ -106,6 +107,40 @@ validate.checkInvData = async (req, res, next) => {
             inv_price,
             inv_miles,
             inv_color
+        })
+        return
+    }
+    next()
+}
+
+/* ******************************
+ * Check inv vehicle data and return errors to edit view or continue to management page
+ * ***************************** */
+validate.checkUpdateData = async (req, res, next) => {
+    const { classification_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles,  inv_color, inv_id } = req.body
+    let errors = []
+    errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        let nav = await utilities.getNav()
+        const itemDataArray = await invModel.getViewByInvId(inv_id);
+        const itemData = itemDataArray[0]; 
+        const itemName = `${itemData.inv_make} ${itemData.inv_model}`;
+        res.render("./inventory/edit-inventory", {
+            title: "Edit " + itemName,
+            nav,
+            classificationList: await utilities.buildClassificationList(classification_id),
+            errors: errors.array(),
+            flashMessages: req.flash(),
+            inv_make,
+            inv_model,
+            inv_year,
+            inv_description,
+            inv_image,
+            inv_thumbnail,
+            inv_price,
+            inv_miles,
+            inv_color,
+            inv_id,
         })
         return
     }
