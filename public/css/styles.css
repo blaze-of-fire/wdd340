@@ -75,13 +75,30 @@ header {
     top: 0; left: 55px;
 }
 
-#tools a {
+.tools {
+    display: flex;
+    justify-content: space-around;
+}
+
+#welcomeAccount {
+    width: 5rem;
+    text-align: center;
+    font-family: "Rochester", cursive;
+    font-weight: 700;
+    font-style: normal;
+    margin: 0;
+    font-size: x-large;
+}
+
+.tools a {
     display: block;
     font-family: "Roboto", sans-serif;
     font-weight: 400;
+    font-size: 1.2em;
     text-decoration: none;
     color: black;
-    margin-top: 0;
+    margin: 0.5rem 0 0 0.4rem;
+    
   }
 
 nav ul li a {
@@ -280,6 +297,11 @@ p, a, li {
         margin: 1rem 0;
     }  
 
+}
+
+.libreBakersville {
+    font-family: "Libre Baskerville", serif;
+    font-weight: 700;
 }
 
 @media screen and (min-width: 740px) {
@@ -648,7 +670,7 @@ form a {
     color: white;
 }
 
-.registerReq {
+.passwordReq {
     font-family: "Libre Baskerville", serif;
     font-weight: 400;
     font-size: small;
@@ -675,7 +697,7 @@ form a {
     }
 }
 
-/* Management view */
+/* Inventory Management view */
 .vehicleManageLinks {
     display: block;
     margin-top: 0.5rem;
@@ -717,7 +739,6 @@ tbody tr:nth-child(even) {
 tr a {
     display: block;
     color: rgb(8, 8, 8);
-    /* color: rgb(70, 50, 50); */
     text-align: center;
     margin: 0;
 }

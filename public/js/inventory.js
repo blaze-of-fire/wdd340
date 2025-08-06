@@ -5,8 +5,8 @@ let classificationList = document.querySelector("#classificationList")
 classificationList.classList.add("selectForVehManagement")
 classificationList.addEventListener("change", function () {
     let classification_id = classificationList.value
-    console.log(`classificaiton_id is: ${classification_id}`)
-    let classIdURL = "getInventory/" + classification_id
+    console.log(`classification_id is: ${classification_id}`)
+    let classIdURL = "/inv/getInventory/" + classification_id
     fetch(classIdURL)
     .then(function (response) {
         if (response.ok) {

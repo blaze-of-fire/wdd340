@@ -1,4 +1,5 @@
 const invModel = require("../models/inventory-model")
+const accountModel = require("../models/account-model")
 const Util = {}
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
@@ -142,6 +143,32 @@ Util.checkLogin = (req, res, next) => {
             return res.redirect("/account/login")
         }
 }
+
+// get the account name
+Util.getName = async function (req, res, next) {
+    const account_id = res.locals.accountData.account_id
+    if (account_id) {
+        const accountData = await accountModel.getAccountById(account_id)
+        const theNameNeeded = accountData.account_firstname
+        return theNameNeeded;
+    }
+    return "";
+}
+
+// attach the name
+Util.attachName = async function (req, res, next) {
+    try {
+        if (res.locals.loggedin) {
+        // correctly pass in req and res
+        res.locals.account_firstname = await Util.getName(req, res);
+      } else {
+        res.locals.account_firstname = "";
+      }
+      next();
+    } catch (err) {
+      next(err);
+    }
+  };
 
 /* *****************************************
  * Middleware For Handling Errors

@@ -1,0 +1,37 @@
+<% if (title) {%>
+<h1><%= title %></h1>
+<% } %>
+
+<%- messages() %> <!-- express-messages -->
+
+<% if (errors) { %>
+    <ul class="notice">
+    <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+  <%  }) %><% if (flashMessages.error) { %>
+  <div class="error"><%= flashMessages.error %></div>
+<% } %>
+    </ul>
+<% } %>
+
+<form action="/inv/delete" method="post">
+    <div>
+        <div>
+            <div>
+                <label for="invMake">Make:</label>
+                <input type="text" id="invMake" name="inv_make" readonly value="<%= locals.inv_make %>">
+                <label for="invModel">Model:</label>
+                <input type="text" id="invModel" name="inv_model" readonly value="<%= locals.inv_model %>">
+                <label for="invYear">Year:</label>
+                <input type="number" id="invYear" name="inv_year" readonly value="<%= locals.inv_year %>">
+                <label for="invPrice">Price:</label>
+                <input type="number" id="invPrice" name="inv_price" readonly value="<%= locals.inv_price %>">
+                <input type="hidden" name="inv_id"
+                <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+                <% } %>>
+                <p>Confirm Deletion - The delete is permanent.</p>
+                <input type="submit" value="Delete Vehicle">
+            </div>
+        </div>
+    </div>
+</form>

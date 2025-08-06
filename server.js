@@ -50,6 +50,15 @@ app.use(cookieParser())
 // check JWT Token
 app.use(utilities.checkJWTToken)
 
+// Allow loggedin to be accessed in all views
+app.use((req, res, next) => {
+  res.locals.loggedin = req.session?.accountData || req.cookies?.jwt ? true : false
+  next()
+})
+
+// attach the name if needed
+app.use(utilities.attachName)
+
 /* ***********************
  * View Engine and Templates
  *************************/
